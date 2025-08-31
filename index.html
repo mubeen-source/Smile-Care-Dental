@@ -498,7 +498,7 @@
             document.getElementById(id).addEventListener('input', calculateBalances);
         });
         
-        document.getElementById('save-button').addEventListener('click', async (). => {
+        document.getElementById('save-button').addEventListener('click', async () => {
             const requiredFields = ['date', 'timeIn', 'patientName', 'patientPhone', 'patientType', 'age', 'sex', 'appointmentType', 'treatmentDone'];
             const missingFields = requiredFields.filter(field => !formElements[field].value);
             
