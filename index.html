@@ -91,10 +91,7 @@
     <div class="max-w-7xl mx-auto bg-green-50 rounded-xl shadow-2xl p-8 mb-12 border-2 border-blue-950">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
             <div>
-                 <div class="flex items-center space-x-4">
-                    <img src="logo.png" alt="Smile Care Dental Clinic Logo" class="h-16">
-                    <h1 class="text-5xl font-extrabold text-blue-950">SMILE CARE DENTAL CLINIC</h1>
-                </div>
+                <h1 class="text-5xl font-extrabold text-blue-950">SMILE CARE DENTAL CLINIC</h1>
                 <p class="mt-2 text-2xl font-bold" style="color:#66bb6a;">PATIENT RECORDS</p>
             </div>
             <div class="mt-4 md:mt-0 flex items-center space-x-4 text-sm text-gray-500">
@@ -501,7 +498,7 @@
             document.getElementById(id).addEventListener('input', calculateBalances);
         });
         
-        document.getElementById('save-button').addEventListener('click', async () => {
+        document.getElementById('save-button').addEventListener('click', async (). => {
             const requiredFields = ['date', 'timeIn', 'patientName', 'patientPhone', 'patientType', 'age', 'sex', 'appointmentType', 'treatmentDone'];
             const missingFields = requiredFields.filter(field => !formElements[field].value);
             
@@ -629,5 +626,5 @@
             });
         }
     </script>
-    </body>
+</body>
 </html>
