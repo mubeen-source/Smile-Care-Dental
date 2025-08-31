@@ -43,38 +43,31 @@
         .grid .box-container:nth-of-type(4) { background-color: #f0fdf4; } /* Light Green */
         .grid .box-container:nth-of-type(5) { background-color: #eff6ff; } /* Light Blue */
 
-        /* ===== ADD THESE STYLES FOR HIGHLIGHTED HEADINGS ===== */
-        /* Main Clinic Title */
+        /* ===== STYLES FOR HIGHLIGHTED HEADINGS ===== */
         .max-w-7xl h1 {
             display: inline-block;
-            background-color: #0d47a1; /* Dark Blue */
+            background-color: #0d47a1;
             color: white;
             padding: 8px 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
-        /* Patient Records Subtitle */
         p[style*="#66bb6a"] {
             display: inline-block;
-            background-color: #66bb6a; /* Match existing text color */
-            color: white !important; /* Override inline style for contrast */
+            background-color: #66bb6a;
+            color: white !important;
             padding: 4px 12px;
-            border-radius: 9999px; /* Pill shape */
+            border-radius: 9999px;
             font-weight: 600;
         }
-
-        /* Section Headings (e.g., PATIENT DETAILS) */
         .box-heading {
             display: inline-block;
-            background-color: #1e3a8a; /* Strong Blue */
+            background-color: #1e3a8a;
             color: white;
             padding: 6px 16px;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
-        /* ===== END OF ADDED STYLES ===== */
-
     </style>
 </head>
 <body class="bg-green-100 p-8">
@@ -98,7 +91,10 @@
     <div class="max-w-7xl mx-auto bg-green-50 rounded-xl shadow-2xl p-8 mb-12 border-2 border-blue-950">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
             <div>
-                <h1 class="text-5xl font-extrabold text-blue-950">SMILE CARE DENTAL CLINIC</h1>
+                 <div class="flex items-center space-x-4">
+                    <img src="logo.png" alt="Smile Care Dental Clinic Logo" class="h-16">
+                    <h1 class="text-5xl font-extrabold text-blue-950">SMILE CARE DENTAL CLINIC</h1>
+                </div>
                 <p class="mt-2 text-2xl font-bold" style="color:#66bb6a;">PATIENT RECORDS</p>
             </div>
             <div class="mt-4 md:mt-0 flex items-center space-x-4 text-sm text-gray-500">
@@ -168,63 +164,11 @@
                         <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                         <input type="text" id="address" class="form-input mt-1" placeholder="Enter or select an address" list="address-list">
                         <datalist id="address-list">
-                            <option value="Pulivalam">
-                            <option value="Thiruthuraipoondi">
-                            <option value="Vadakarai">
-                            <option value="Kodikkalpalayam">
-                            <option value="Adichapuram">
-                            <option value="Kottur">
-                            <option value="Vadakovanur">
-                            <option value="Sathanur">
-                            <option value="Nannimangalam">
-                            <option value="Palaiyanur">
-                            <option value="Kaakaiyadi">
-                            <option value="Overcheri">
-                            <option value="Thanneerkunnam">
-                            <option value="Senthamangalam">
-                            <option value="Kulamanikkam">
-                            <option value="Kiliyanur">
-                            <option value="Manakkarai">
-                            <option value="Harichandrapuram">
-                            <option value="Panduthakudi">
-                            <option value="Nangudi">
-                            <option value="Thottacheri">
-                            <option value="Athangudi">
-                            <option value="Vennavasal">
-                            <option value="Thevangudi">
-                            <option value="Panaiyur">
-                            <option value="Kothamangalam">
-                            <option value="KNR">
-                            <option value="AKD">
-                            <option value="BDM">
-                            <option value="PDK">
-                            <option value="Mannai">
-                            <option value="TVR">
-                            <option value="Kamalapuram">
-                            <option value="Velukudi">
-                            <option value="Sithanakudi">
-                            <option value="Abivai">
-                            <option value="Palakudi">
-                            <option value="KKTVTM">
-                            <option value="Yokaiperaiyur">
-                            <option value="Saakottai">
-                            <option value="Kumbakonam">
-                            <option value="Valacheri">
-                            <option value="Thirurameswaram">
-                            <option value="Koraiyaru">
-                            <option value="Sekarai">
-                            <option value="Marakadai">
-                            <option value="LKD">
-                            <option value="Vadapathimangalam">
-                            <option value="Mavoor">
-                            <option value="Kudavasal">
-                            <option value="Koradacheri">
-                            <option value="Vilamal">
+                            <option value="Pulivalam"></option>
                         </datalist>
                     </div>
                 </div>
             </div>
-
             <div class="box-container">
                 <h2 class="box-heading">TREATMENT DETAILS</h2>
                 <div class="grid grid-cols-1 gap-4">
@@ -232,41 +176,14 @@
                         <label for="treatment-plan" class="block text-sm font-medium text-gray-700">Treatment Plan</label>
                         <input type="text" id="treatment-plan" class="form-input mt-1" placeholder="Enter or select treatment plan(s)" list="treatment-plan-list">
                         <datalist id="treatment-plan-list">
-                            <option value="RCT">
-                            <option value="ORTHO">
-                            <option value="CROWN">
-                            <option value="BRIDGE">
-                            <option value="SCALING">
-                            <option value="ROOT PLANING">
-                            <option value="IMPLANT">
-                            <option value="EXTRACTION">
-                            <option value="IMPACTION">
-                            <option value="CD">
-                            <option value="RPD">
-                            <option value="FILLING">
+                            <option value="RCT"></option>
                         </datalist>
                     </div>
                     <div>
                         <label for="treatment-done" class="block text-sm font-medium text-gray-700">Treatment Done*</label>
                         <input type="text" id="treatment-done" class="form-input mt-1" placeholder="Enter or select treatment done" list="treatment-done-list">
                         <datalist id="treatment-done-list">
-                            <option value="RCT 1">
-                            <option value="RCT 2">
-                            <option value="ORTHO">
-                            <option value="CP">
-                            <option value="CF">
-                            <option value="XRAY">
-                            <option value="CONS">
-                            <option value="I & D">
-                            <option value="SCALING">
-                            <option value="ROOT PLANING">
-                            <option value="IMPLANT 1">
-                            <option value="IMPLANT 2">
-                            <option value="EXTRACTION">
-                            <option value="IMPACTION">
-                            <option value="CD">
-                            <option value="RPD">
-                            <option value="FILLING">
+                            <option value="RCT 1"></option>
                         </datalist>
                     </div>
                     <div>
@@ -275,7 +192,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="box-container">
                 <h2 class="box-heading">PATIENT CLINICAL DATA</h2>
                 <div class="grid grid-cols-1 gap-4">
@@ -305,7 +221,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="box-container">
                 <h2 class="box-heading">CHARGES</h2>
                 <div class="grid grid-cols-1 gap-4">
@@ -345,7 +260,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="box-container">
                 <h2 class="box-heading">PATIENT LAB RECORDS</h2>
                 <div class="grid grid-cols-1 gap-4">
@@ -353,10 +267,7 @@
                         <label for="lab-name" class="block text-sm font-medium text-gray-700">Lab Name</label>
                         <input type="text" id="lab-name" class="form-input mt-1" placeholder="Type or select lab name" list="lab-names">
                         <datalist id="lab-names">
-                            <option value="Arthi Lab">
-                            <option value="Nithun Lab">
-                            <option value="Ortho Creation">
-                            <option value="Smile Buddy">
+                            <option value="Arthi Lab"></option>
                         </datalist>
                     </div>
                     <div>
@@ -428,21 +339,17 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="patient-table-body" class="bg-white divide-y divide-gray-200">
-                        </tbody>
+                    <tbody id="patient-table-body" class="bg-white divide-y divide-gray-200"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
     <script type="module">
-        // Firebase code remains the same
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
         import { getFirestore, doc, setDoc, collection, onSnapshot, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-        import { setLogLevel } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-        // This is your unique Firebase configuration. Do not share it publicly.
         const firebaseConfig = {
           apiKey: "AIzaSyCwGa9Wt1SsnXXGTInfmvrIB7-oRiwvKJw",
           authDomain: "smilecare-dental-15cb6.firebaseapp.com",
@@ -457,8 +364,270 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        
+        let userId;
+        let isAuthReady = false;
 
-        // All JavaScript logic remains unchanged...
+        function showModal(title, message) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('confirmation-modal').classList.remove('hidden');
+        }
+
+        function hideModal() {
+            document.getElementById('confirmation-modal').classList.add('hidden');
+        }
+        document.getElementById('modal-ok-button').addEventListener('click', hideModal);
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                userId = user.uid;
+            } else {
+                try {
+                    await signInAnonymously(auth);
+                    userId = auth.currentUser.uid;
+                } catch (error) {
+                    console.error("Firebase Auth Error:", error);
+                    showModal('Authentication Error', 'An error occurred during authentication. Check console.');
+                    userId = crypto.randomUUID(); 
+                }
+            }
+            document.getElementById('user-info').innerText = `User ID: ${userId}`;
+            isAuthReady = true;
+            setupFirestoreListener();
+            await setupAutocompleteListeners();
+            formElements.patientId.value = generatePatientId();
+        });
+
+        const formElements = {
+            patientId: document.getElementById('patient-id'),
+            date: document.getElementById('date'),
+            timeIn: document.getElementById('time-in'),
+            patientName: document.getElementById('patient-name'),
+            patientPhone: document.getElementById('patient-phone'),
+            patientType: document.getElementById('patient-type'),
+            age: document.getElementById('age'),
+            sex: document.getElementById('sex'),
+            appointmentType: document.getElementById('appointment-type'),
+            address: document.getElementById('address'),
+            treatmentPlan: document.getElementById('treatment-plan'),
+            treatmentDone: document.getElementById('treatment-done'),
+            nextAppointment: document.getElementById('next-appointment'),
+            totalCharges: document.getElementById('total-charges'),
+            treatmentPaid: document.getElementById('treatment-paid'),
+            treatmentBalance: document.getElementById('treatment-balance'),
+            medicineTotal: document.getElementById('medicine-total'),
+            medicinePaid: document.getElementById('medicine-paid'),
+            medicineBalance: document.getElementById('medicine-balance'),
+            gpayTime: document.getElementById('gpay-time'),
+            totalEstimation: document.getElementById('total-estimation'),
+            measurementDetails: document.getElementById('measurement-details'),
+            additionalDetails: document.getElementById('additional-details'),
+            medicalHistory: document.getElementById('medical-history'),
+            allergyHistory: document.getElementById('allergy-history'),
+            prescriptionDetails: document.getElementById('prescription-details'),
+            labName: document.getElementById('lab-name'),
+            labDetails: document.getElementById('lab-details'),
+            shade: document.getElementById('shade'),
+            workType: document.getElementById('work-type'),
+            traysGiven: document.getElementById('trays-given'),
+            outDate: document.getElementById('out-date'),
+            inDate: document.getElementById('in-date')
+        };
+        
+        function generatePatientId(name = '', age = '', sex = '') {
+            const cleanName = name.replace(/\s/g, '').toLowerCase();
+            const hash = cleanName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) + (age || '') + (sex ? sex.charCodeAt(0) : '');
+            const timestamp = new Date().getTime();
+            return `SCDC-${timestamp}-${hash}`;
+        }
+
+        const patientCache = {};
+        
+        async function fetchAllPatients() {
+            if (!isAuthReady) return;
+            const q = collection(db, 'artifacts', appId, 'public', 'data', 'patients');
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(doc => {
+                const patient = doc.data();
+                patientCache[patient.id] = patient;
+            });
+        }
+        
+        async function setupAutocompleteListeners() {
+            await fetchAllPatients();
+            
+            const patientNamesList = document.getElementById('patient-names');
+            const uniqueNames = [...new Set(Object.values(patientCache).map(p => p.patientName))];
+            patientNamesList.innerHTML = uniqueNames.map(name => `<option value="${name}"></option>`).join('');
+
+            formElements.patientName.addEventListener('change', (e) => {
+                const selectedName = e.target.value;
+                const patient = Object.values(patientCache).find(p => p.patientName === selectedName);
+                if (patient) {
+                    fillFormWithPatientData(patient);
+                }
+            });
+
+            formElements.patientPhone.addEventListener('blur', (e) => {
+                const phoneNumber = e.target.value;
+                const patient = Object.values(patientCache).find(p => p.patientPhone === phoneNumber);
+                if (patient) {
+                    fillFormWithPatientData(patient);
+                }
+            });
+        }
+
+        function fillFormWithPatientData(patient) {
+            formElements.patientType.value = 'Old';
+            for (const key in formElements) {
+                if (patient[key] !== undefined) {
+                    formElements[key].value = patient[key];
+                }
+            }
+            calculateBalances();
+        }
+
+        function calculateBalances() {
+            const totalCharges = parseFloat(formElements.totalCharges.value) || 0;
+            const treatmentPaid = parseFloat(formElements.treatmentPaid.value) || 0;
+            const medicineTotal = parseFloat(formElements.medicineTotal.value) || 0;
+            const medicinePaid = parseFloat(formElements.medicinePaid.value) || 0;
+            formElements.treatmentBalance.value = (totalCharges - treatmentPaid).toFixed(2);
+            formElements.medicineBalance.value = (medicineTotal - medicinePaid).toFixed(2);
+        }
+
+        ['totalCharges', 'treatmentPaid', 'medicineTotal', 'medicinePaid'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateBalances);
+        });
+        
+        document.getElementById('save-button').addEventListener('click', async () => {
+            const requiredFields = ['date', 'timeIn', 'patientName', 'patientPhone', 'patientType', 'age', 'sex', 'appointmentType', 'treatmentDone'];
+            const missingFields = requiredFields.filter(field => !formElements[field].value);
+            
+            if (missingFields.length > 0) {
+                showModal('Validation Error', `Please fill out all required fields: ${missingFields.join(', ')}`);
+                return;
+            }
+            
+            const patientId = formElements.patientId.value;
+            const data = {
+                id: patientId,
+                timestamp: new Date().toISOString(),
+            };
+
+            for (const key in formElements) {
+                data[key] = formElements[key].value;
+            }
+
+            try {
+                const patientDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'patients', patientId);
+                await setDoc(patientDocRef, data, { merge: true });
+                showModal('Success!', 'Patient data saved successfully.');
+                clearForm();
+            } catch (error) {
+                console.error("Error saving document:", error);
+                showModal('Error', 'Failed to save data. Please try again.');
+            }
+        });
+
+        function clearForm() {
+            Object.values(formElements).forEach(element => {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    if(element.id !== 'patient-id') element.value = '';
+                } else if (element.tagName === 'SELECT') {
+                    element.selectedIndex = 0;
+                }
+            });
+            formElements.patientId.value = generatePatientId();
+        }
+
+        document.getElementById('clear-form-button').addEventListener('click', clearForm);
+
+        document.getElementById('export-button').addEventListener('click', async () => {
+            const patientData = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'patients'));
+            const patients = patientData.docs.map(doc => doc.data());
+            
+            if (patients.length === 0) {
+                showModal('No Data', 'There is no patient data to export.');
+                return;
+            }
+            
+            const header = Object.keys(patients[0]);
+            let csvContent = header.join(',') + '\n';
+            
+            patients.forEach(patient => {
+                const row = header.map(fieldName => {
+                    const value = patient[fieldName] || '';
+                    const stringValue = String(value).replace(/"/g, '""');
+                    return `"${stringValue}"`;
+                });
+                csvContent += row.join(',') + '\n';
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'dental_patient_data.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        async function deletePatient(docId) {
+            try {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'patients', docId));
+                showModal('Deleted', 'Patient record deleted successfully.');
+            } catch (error) {
+                console.error("Error removing document: ", error);
+                showModal('Error', 'Failed to delete record.');
+            }
+        }
+
+        function setupFirestoreListener() {
+            if (!isAuthReady || !db) return;
+
+            const q = collection(db, 'artifacts', appId, 'public', 'data', 'patients');
+            const patientTableBody = document.getElementById('patient-table-body');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            loadingSpinner.classList.remove('hidden');
+
+            onSnapshot(q, (querySnapshot) => {
+                loadingSpinner.classList.add('hidden');
+                patientTableBody.innerHTML = '';
+                const allPatients = [];
+                querySnapshot.forEach((doc) => allPatients.push(doc.data()));
+                
+                allPatients.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                allPatients.forEach((patient) => {
+                    patientCache[patient.id] = patient;
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${patient.date || ''}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${patient.id || ''}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${patient.patientName || ''}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${patient.patientPhone || ''}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${patient.treatmentDone || ''}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${patient.totalCharges || 0}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-red-500">₹${patient.treatmentBalance || 0}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button class="text-indigo-600 hover:text-indigo-900 mr-3 edit-button">Edit</button>
+                            <button class="text-red-600 hover:text-red-900 delete-button">Delete</button>
+                        </td>
+                    `;
+                    row.querySelector('.delete-button').addEventListener('click', () => deletePatient(patient.id));
+                    row.querySelector('.edit-button').addEventListener('click', () => fillFormWithPatientData(patient));
+                    patientTableBody.appendChild(row);
+                });
+            }, (error) => {
+                console.error("Error listening to Firestore updates:", error);
+                loadingSpinner.classList.add('hidden');
+                showModal('Error', 'Could not fetch patient records.');
+            });
+        }
     </script>
-</body>
+    </body>
 </html>
