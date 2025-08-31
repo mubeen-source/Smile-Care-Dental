@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #e8f5e9; /* Light Green */
+            background-color: #e8f5e9;
         }
         .form-input, .form-textarea, .form-select {
             @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200;
@@ -35,11 +35,11 @@
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
-        .grid .box-container:nth-of-type(1) { background-color: #eff6ff; } /* Light Blue */
-        .grid .box-container:nth-of-type(2) { background-color: #f0fdf4; } /* Light Green */
-        .grid .box-container:nth-of-type(3) { background-color: #fffbeb; } /* Light Yellow/Cream */
-        .grid .box-container:nth-of-type(4) { background-color: #f0fdf4; } /* Light Green */
-        .grid .box-container:nth-of-type(5) { background-color: #eff6ff; } /* Light Blue */
+        .grid .box-container:nth-of-type(1) { background-color: #eff6ff; }
+        .grid .box-container:nth-of-type(2) { background-color: #f0fdf4; }
+        .grid .box-container:nth-of-type(3) { background-color: #fffbeb; }
+        .grid .box-container:nth-of-type(4) { background-color: #f0fdf4; }
+        .grid .box-container:nth-of-type(5) { background-color: #eff6ff; }
         .max-w-7xl h1 {
             display: inline-block;
             background-color: #0d47a1;
@@ -93,7 +93,7 @@
             <div class="mt-4 md:mt-0 flex items-center space-x-4 text-sm text-gray-500">
                 <span id="user-info"></span>
                 <button id="clear-form-button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition duration-200">
-                    <svg xmlns="http://www.w.org/2000/svg" class="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
                     New Entry
@@ -158,6 +158,57 @@
                         <input type="text" id="address" class="form-input mt-1" placeholder="Enter or select an address" list="address-list">
                         <datalist id="address-list">
                             <option value="Pulivalam"></option>
+                            <option value="Thiruthuraipoondi"></option>
+                            <option value="Vadakarai"></option>
+                            <option value="Kodikkalpalayam"></option>
+                            <option value="Adichapuram"></option>
+                            <option value="Kottur"></option>
+                            <option value="Vadakovanur"></option>
+                            <option value="Sathanur"></option>
+                            <option value="Nannimangalam"></option>
+                            <option value="Palaiyanur"></option>
+                            <option value="Kaakaiyadi"></option>
+                            <option value="Overcheri"></option>
+                            <option value="Thanneerkunnam"></option>
+                            <option value="Senthamangalam"></option>
+                            <option value="Kulamanikkam"></option>
+                            <option value="Kiliyanur"></option>
+                            <option value="Manakkarai"></option>
+                            <option value="Harichandrapuram"></option>
+                            <option value="Panduthakudi"></option>
+                            <option value="Nangudi"></option>
+                            <option value="Thottacheri"></option>
+                            <option value="Athangudi"></option>
+                            <option value="Vennavasal"></option>
+                            <option value="Thevangudi"></option>
+                            <option value="Panaiyur"></option>
+                            <option value="Kothamangalam"></option>
+                            <option value="KNR"></option>
+                            <option value="AKD"></option>
+                            <option value="BDM"></option>
+                            <option value="PDK"></option>
+                            <option value="Mannai"></option>
+                            <option value="TVR"></option>
+                            <option value="Kamalapuram"></option>
+                            <option value="Velukudi"></option>
+                            <option value="Sithanakudi"></option>
+                            <option value="Abivai"></option>
+                            <option value="Palakudi"></option>
+                            <option value="KKTVTM"></option>
+                            <option value="Yokaiperaiyur"></option>
+                            <option value="Saakottai"></option>
+                            <option value="Kumbakonam"></option>
+                            <option value="Valacheri"></option>
+                            <option value="Thirurameswaram"></option>
+                            <option value="Koraiyaru"></option>
+                            <option value="Sekarai"></option>
+                            <option value="Marakadai"></option>
+                            <option value="LKD"></option>
+                            <option value="Vadapathimangalam"></option>
+                            <option value="Mavoor"></option>
+                            <option value="Kudavasal"></option>
+                            <option value="Koradacheri"></option>
+                            <option value="Vilamal"></option>
                         </datalist>
                     </div>
                 </div>
@@ -170,6 +221,17 @@
                         <input type="text" id="treatment-plan" class="form-input mt-1" placeholder="Enter or select treatment plan(s)" list="treatment-plan-list">
                         <datalist id="treatment-plan-list">
                             <option value="RCT"></option>
+                            <option value="ORTHO"></option>
+                            <option value="CROWN"></option>
+                            <option value="BRIDGE"></option>
+                            <option value="SCALING"></option>
+                            <option value="ROOT PLANING"></option>
+                            <option value="IMPLANT"></option>
+                            <option value="EXTRACTION"></option>
+                            <option value="IMPACTION"></option>
+                            <option value="CD"></option>
+                            <option value="RPD"></option>
+                            <option value="FILLING"></option>
                         </datalist>
                     </div>
                     <div>
@@ -177,6 +239,22 @@
                         <input type="text" id="treatment-done" class="form-input mt-1" placeholder="Enter or select treatment done" list="treatment-done-list">
                         <datalist id="treatment-done-list">
                             <option value="RCT 1"></option>
+                            <option value="RCT 2"></option>
+                            <option value="ORTHO"></option>
+                            <option value="CP"></option>
+                            <option value="CF"></option>
+                            <option value="XRAY"></option>
+                            <option value="CONS"></option>
+                            <option value="I & D"></option>
+                            <option value="SCALING"></option>
+                            <option value="ROOT PLANING"></option>
+                            <option value="IMPLANT 1"></option>
+                            <option value="IMPLANT 2"></option>
+                            <option value="EXTRACTION"></option>
+                            <option value="IMPACTION"></option>
+                            <option value="CD"></option>
+                            <option value="RPD"></option>
+                            <option value="FILLING"></option>
                         </datalist>
                     </div>
                     <div>
@@ -261,6 +339,9 @@
                         <input type="text" id="lab-name" class="form-input mt-1" placeholder="Type or select lab name" list="lab-names">
                         <datalist id="lab-names">
                             <option value="Arthi Lab"></option>
+                            <option value="Nithun Lab"></option>
+                            <option value="Ortho Creation"></option>
+                            <option value="Smile Buddy"></option>
                         </datalist>
                     </div>
                     <div>
@@ -312,7 +393,7 @@
         <div id="patient-list-container" class="mt-8 bg-white p-6 rounded-xl shadow-2xl border-2 border-blue-950">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Patient Records</h2>
             <div id="loading-spinner" class="text-center text-gray-500 hidden">
-                <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
@@ -490,11 +571,9 @@
             formElements.medicineBalance.value = (medicineTotal - medicinePaid).toFixed(2);
         }
 
-        // ##### THIS IS THE CORRECTED PART #####
         ['total-charges', 'treatment-paid', 'medicine-total', 'medicine-paid'].forEach(id => {
             document.getElementById(id).addEventListener('input', calculateBalances);
         });
-        // ######################################
         
         document.getElementById('save-button').addEventListener('click', async () => {
             const requiredFields = ['date', 'timeIn', 'patientName', 'patientPhone', 'patientType', 'age', 'sex', 'appointmentType', 'treatmentDone'];
