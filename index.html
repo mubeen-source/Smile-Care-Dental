@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e8f5e9; /* Light Green */
+        }
+        .form-input, .form-textarea, .form-select {
+            @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200;
+        }
+        .box-container {
+            @apply p-6 bg-white rounded-lg shadow-lg border-2 border-blue-950;
+        }
+        .box-heading {
+            @apply text-3xl font-bold text-blue-950 mb-4;
+        }
+        .sub-box-heading {
+            @apply text-xl font-bold text-blue-950 mb-2;
+        }
+        .sub-box {
+            @apply p-4 border border-blue-950 rounded-lg;
+        }
+    </style>
+</head>
+<body class="bg-green-100 p-8">
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title"></h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500" id="modal-message"></p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="modal-ok-button" class="px-4 py-2 bg-blue-800 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="max-w-7xl mx-auto bg-green-50 rounded-xl shadow-2xl p-8 mb-12 border-2 border-blue-950">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <div>
+                <h1 class="text-5xl font-extrabold text-blue-950">SMILE CARE DENTAL CLINIC</h1>
+                <p class="mt-2 text-2xl font-bold" style="color:#66bb6a;">PATIENT RECORDS</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center space-x-4 text-sm text-gray-500">
+                <span id="user-info"></span>
+                <button id="clear-form-button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    New Entry
+                </button>
+            </div>
+        </div>
+
+        <!-- Form Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            <!-- First Box: Patient Details -->
+            <div class="box-container relative">
+                <h2 class="box-heading">PATIENT DETAILS</h2>
+                <div class="absolute top-6 right-6">
+                    <label for="patient-id" class="block text-sm font-medium text-gray-700">Patient ID*</label>
+                    <input type="text" id="patient-id" class="form-input mt-1 bg-gray-200 cursor-not-allowed w-40" readonly>
+                </div>
+                <div class="mt-12 grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="date" class="block text-sm font-medium text-gray-700">Date*</label>
+                        <input type="date" id="date" class="form-input mt-1">
+                    </div>
+                    <div>
+                        <label for="time-in" class="block text-sm font-medium text-gray-700">Time In*</label>
+                        <input type="time" id="time-in" class="form-input mt-1">
+                    </div>
+                    <div>
+                        <label for="patient-name" class="block text-sm font-medium text-gray-700">Patient Name*</label>
+                        <input type="text" id="patient-name" class="form-input mt-1" placeholder="Enter full name" list="patient-names">
+                        <datalist id="patient-names"></datalist>
+                    </div>
+                    <div>
+                        <label for="patient-phone" class="block text-sm font-medium text-gray-700">Phone Number*</label>
+                        <input type="tel" id="patient-phone" class="form-input mt-1" placeholder="e.g., 123-456-7890">
+                    </div>
+                    <div>
+                        <label for="patient-type" class="block text-sm font-medium text-gray-700">Case*</label>
+                        <select id="patient-type" class="form-select mt-1">
+                            <option value="New">New</option>
+                            <option value="Old">Old</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="age" class="block text-sm font-medium text-gray-700">Age*</label>
+                        <input type="number" id="age" class="form-input mt-1" placeholder="Enter age">
+                    </div>
+                    <div>
+                        <label for="sex" class="block text-sm font-medium text-gray-700">Gender*</label>
+                        <select id="sex" class="form-select mt-1">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="appointment-type" class="block text-sm font-medium text-gray-700">Type*</label>
+                        <select id="appointment-type" class="form-select mt-1">
+                            <option value="Walk-in Consultation">Walk-in Consultation</option>
+                            <option value="Treatment Appointment by Doctor">Treatment Appointment by Doctor</option>
+                            <option value="Appointment by Call">Appointment by Call</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                        <input type="text" id="address" class="form-input mt-1" placeholder="Enter or select an address" list="address-list">
+                        <datalist id="address-list">
+                            <option value="Pulivalam">
+                            <option value="Thiruthuraipoondi">
+                            <option value="Vadakarai">
+                            <option value="Kodikkalpalayam">
+                            <option value="Adichapuram">
+                            <option value="Kottur">
+                            <option value="Vadakovanur">
+                            <option value="Sathanur">
+                            <option value="Nannimangalam">
+                            <option value="Palaiyanur">
+                            <option value="Kaakaiyadi">
+                            <option value="Overcheri">
+                            <option value="Thanneerkunnam">
+                            <option value="Senthamangalam">
+                            <option value="Kulamanikkam">
+                            <option value="Kiliyanur">
+                            <option value="Manakkarai">
+                            <option value="Harichandrapuram">
+                            <option value="Panduthakudi">
+                            <option value="Nangudi">
+                            <option value="Thottacheri">
+                            <option value="Athangudi">
+                            <option value="Vennavasal">
+                            <option value="Thevangudi">
+                            <option value="Panaiyur">
+                            <option value="Kothamangalam">
+                            <option value="KNR">
+                            <option value="AKD">
+                            <option value="BDM">
+                            <option value="PDK">
+                            <option value="Mannai">
+                            <option value="TVR">
+                            <option value="Kamalapuram">
+                            <option value="Velukudi">
+                            <option value="Sithanakudi">
+                            <option value="Abivai">
+                            <option value="Palakudi">
+                            <option value="KKTVTM">
+                            <option value="Yokaiperaiyur">
+                            <option value="Saakottai">
+                            <option value="Kumbakonam">
+                            <option value="Valacheri">
+                            <option value="Thirurameswaram">
+                            <option value="Koraiyaru">
+                            <option value="Sekarai">
+                            <option value="Marakadai">
+                            <option value="LKD">
+                            <option value="Vadapathimangalam">
+                            <option value="Mavoor">
+                            <option value="Kudavasal">
+                            <option value="Koradacheri">
+                            <option value="Vilamal">
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Box: Treatment Details -->
+            <div class="box-container">
+                <h2 class="box-heading">TREATMENT DETAILS</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="treatment-plan" class="block text-sm font-medium text-gray-700">Treatment Plan</label>
+                        <input type="text" id="treatment-plan" class="form-input mt-1" placeholder="Enter or select treatment plan(s)" list="treatment-plan-list">
+                        <datalist id="treatment-plan-list">
+                            <option value="RCT">
+                            <option value="ORTHO">
+                            <option value="CROWN">
+                            <option value="BRIDGE">
+                            <option value="SCALING">
+                            <option value="ROOT PLANING">
+                            <option value="IMPLANT">
+                            <option value="EXTRACTION">
+                            <option value="IMPACTION">
+                            <option value="CD">
+                            <option value="RPD">
+                            <option value="FILLING">
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="treatment-done" class="block text-sm font-medium text-gray-700">Treatment Done*</label>
+                        <input type="text" id="treatment-done" class="form-input mt-1" placeholder="Enter or select treatment done" list="treatment-done-list">
+                        <datalist id="treatment-done-list">
+                            <option value="RCT 1">
+                            <option value="RCT 2">
+                            <option value="ORTHO">
+                            <option value="CP">
+                            <option value="CF">
+                            <option value="XRAY">
+                            <option value="CONS">
+                            <option value="I & D">
+                            <option value="SCALING">
+                            <option value="ROOT PLANING">
+                            <option value="IMPLANT 1">
+                            <option value="IMPLANT 2">
+                            <option value="EXTRACTION">
+                            <option value="IMPACTION">
+                            <option value="CD">
+                            <option value="RPD">
+                            <option value="FILLING">
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="next-appointment" class="block text-sm font-medium text-gray-700">Next Scheduled Appointment</label>
+                        <input type="datetime-local" id="next-appointment" class="form-input mt-1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Box: Patient Clinical Data -->
+            <div class="box-container">
+                <h2 class="box-heading">PATIENT CLINICAL DATA</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="total-estimation" class="block text-sm font-medium text-gray-700">Treatment Estimation</label>
+                        <input type="number" id="total-estimation" class="form-input mt-1" placeholder="e.g., 1200">
+                    </div>
+                    <div>
+                        <label for="measurement-details" class="block text-sm font-medium text-gray-700">Measurement Details</label>
+                        <textarea id="measurement-details" rows="2" class="form-textarea mt-1" placeholder="Enter measurement details"></textarea>
+                    </div>
+                    <div>
+                        <label for="additional-details" class="block text-sm font-medium text-gray-700">Additional Details</label>
+                        <textarea id="additional-details" rows="2" class="form-textarea mt-1" placeholder="Enter additional details"></textarea>
+                    </div>
+                    <div>
+                        <label for="medical-history" class="block text-sm font-medium text-gray-700">Medical History</label>
+                        <textarea id="medical-history" rows="2" class="form-textarea mt-1" placeholder="Enter medical history"></textarea>
+                    </div>
+                    <div>
+                        <label for="allergy-history" class="block text-sm font-medium text-gray-700">Allergy History</label>
+                        <textarea id="allergy-history" rows="2" class="form-textarea mt-1" placeholder="Enter allergy history"></textarea>
+                    </div>
+                    <div>
+                        <label for="prescription-details" class="block text-sm font-medium text-gray-700">Prescription Details</label>
+                        <textarea id="prescription-details" rows="2" class="form-textarea mt-1" placeholder="Enter prescription details"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth Box: Charges -->
+            <div class="box-container">
+                <h2 class="box-heading">CHARGES</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="sub-box">
+                        <h3 class="sub-box-heading">Treatment Charges</h3>
+                        <div>
+                            <label for="total-charges" class="block text-sm font-medium text-gray-700">Total</label>
+                            <input type="number" id="total-charges" class="form-input mt-1" placeholder="e.g., 500">
+                        </div>
+                        <div>
+                            <label for="treatment-paid" class="block text-sm font-medium text-gray-700">Paid</label>
+                            <input type="number" id="treatment-paid" class="form-input mt-1" placeholder="e.g., 300">
+                        </div>
+                        <div>
+                            <label for="treatment-balance" class="block text-sm font-medium text-gray-700">Balance</label>
+                            <input type="number" id="treatment-balance" class="form-input mt-1 bg-gray-200 cursor-not-allowed" readonly>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        <h3 class="sub-box-heading">Medicine Charges</h3>
+                        <div>
+                            <label for="medicine-total" class="block text-sm font-medium text-gray-700">Total</label>
+                            <input type="number" id="medicine-total" class="form-input mt-1" placeholder="e.g., 100">
+                        </div>
+                        <div>
+                            <label for="medicine-paid" class="block text-sm font-medium text-gray-700">Paid</label>
+                            <input type="number" id="medicine-paid" class="form-input mt-1" placeholder="e.g., 50">
+                        </div>
+                        <div>
+                            <label for="medicine-balance" class="block text-sm font-medium text-gray-700">Balance</label>
+                            <input type="number" id="medicine-balance" class="form-input mt-1 bg-gray-200 cursor-not-allowed" readonly>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="gpay-time" class="block text-sm font-medium text-gray-700">Gpay Time</label>
+                        <input type="text" id="gpay-time" class="form-input mt-1" placeholder="e.g., 10:30 PM">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fifth Box: Patient Lab Records -->
+            <div class="box-container">
+                <h2 class="box-heading">PATIENT LAB RECORDS</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="lab-name" class="block text-sm font-medium text-gray-700">Lab Name</label>
+                        <input type="text" id="lab-name" class="form-input mt-1" placeholder="Type or select lab name" list="lab-names">
+                        <datalist id="lab-names">
+                            <option value="Arthi Lab">
+                            <option value="Nithun Lab">
+                            <option value="Ortho Creation">
+                            <option value="Smile Buddy">
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="lab-details" class="block text-sm font-medium text-gray-700">Details</label>
+                        <textarea id="lab-details" rows="2" class="form-textarea mt-1" placeholder="Enter details"></textarea>
+                    </div>
+                    <div>
+                        <label for="shade" class="block text-sm font-medium text-gray-700">Shade</label>
+                        <input type="text" id="shade" class="form-input mt-1" placeholder="e.g., A2">
+                    </div>
+                    <div>
+                        <label for="work-type" class="block text-sm font-medium text-gray-700">Work Type</label>
+                        <input type="text" id="work-type" class="form-input mt-1" placeholder="e.g., Crown, Bridge">
+                    </div>
+                    <div>
+                        <label for="trays-given" class="block text-sm font-medium text-gray-700">Trays Given</label>
+                        <select id="trays-given" class="form-select mt-1">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="out-date" class="block text-sm font-medium text-gray-700">Out Date</label>
+                        <input type="date" id="out-date" class="form-input mt-1">
+                    </div>
+                    <div>
+                        <label for="in-date" class="block text-sm font-medium text-gray-700">In Date</label>
+                        <input type="date" id="in-date" class="form-input mt-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+            <button id="save-button" class="bg-blue-800 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-900 transition duration-300 transform hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Save Patient Data
+            </button>
+            <button id="export-button" class="bg-blue-800 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-900 transition duration-300 transform hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export to Excel (CSV)
+            </button>
+        </div>
+
+        <!-- Patient Records Table -->
+        <div id="patient-list-container" class="mt-8 bg-white p-6 rounded-xl shadow-2xl border-2 border-blue-950">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Patient Records</h2>
+            <div id="loading-spinner" class="text-center text-gray-500 hidden">
+                <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="mt-2">Loading patient data...</p>
+            </div>
+            <div class="overflow-x-auto shadow-md rounded-lg">
+                <table id="patient-table" class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Treatment</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Charges</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Balance</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patient-table-body" class="bg-white divide-y divide-gray-200">
+                        <!-- Patient data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Imports -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+        import { getFirestore, doc, setDoc, collection, onSnapshot, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+        // IMPORTANT: REPLACE THE FIREBASE CONFIG BELOW WITH YOUR OWN!
+        // 1. Go to your Firebase project console.
+        // 2. Click the settings gear icon > Project settings.
+        // 3. In the "General" tab, scroll down to "Your apps".
+        // 4. Click the "</>" icon to create a web app.
+        // 5. Copy the `firebaseConfig` object and paste it below.
+        // 6. This is essential for the app to connect to your database.
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const appId = firebaseConfig.projectId; // Using projectId as a unique app identifier
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        setLogLevel('Debug');
+        
+        let userId;
+        let isAuthReady = false;
+
+        // Custom Modal functions
+        function showModal(title, message) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('confirmation-modal').classList.remove('hidden');
+        }
+
+        function hideModal() {
+            document.getElementById('confirmation-modal').classList.add('hidden');
+        }
+        document.getElementById('modal-ok-button').addEventListener('click', hideModal);
+
+        // Handle user authentication state
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                userId = user.uid;
+            } else {
+                try {
+                    await signInAnonymously(auth);
+                    userId = auth.currentUser.uid;
+                } catch (error) {
+                    console.error("Firebase Auth Error:", error);
+                    userId = crypto.randomUUID();
+                }
+            }
+            document.getElementById('user-info').innerText = `User ID: ${userId}`;
+            isAuthReady = true;
+            setupFirestoreListener();
+            setupAutocompleteListeners();
+            // Patient ID generation now happens after auth is ready
+            formElements.patientId.value = generatePatientId();
+        });
+
+        // DOM elements
+        const formElements = {
+            patientId: document.getElementById('patient-id'),
+            date: document.getElementById('date'),
+            timeIn: document.getElementById('time-in'),
+            patientName: document.getElementById('patient-name'),
+            patientPhone: document.getElementById('patient-phone'),
+            patientType: document.getElementById('patient-type'),
+            age: document.getElementById('age'),
+            sex: document.getElementById('sex'),
+            appointmentType: document.getElementById('appointment-type'),
+            address: document.getElementById('address'),
+            treatmentPlan: document.getElementById('treatment-plan'),
+            treatmentDone: document.getElementById('treatment-done'),
+            nextAppointment: document.getElementById('next-appointment'),
+            totalCharges: document.getElementById('total-charges'),
+            treatmentPaid: document.getElementById('treatment-paid'),
+            treatmentBalance: document.getElementById('treatment-balance'),
+            medicineTotal: document.getElementById('medicine-total'),
+            medicinePaid: document.getElementById('medicine-paid'),
+            medicineBalance: document.getElementById('medicine-balance'),
+            gpayTime: document.getElementById('gpay-time'),
+            totalEstimation: document.getElementById('total-estimation'),
+            measurementDetails: document.getElementById('measurement-details'),
+            additionalDetails: document.getElementById('additional-details'),
+            medicalHistory: document.getElementById('medical-history'),
+            allergyHistory: document.getElementById('allergy-history'),
+            prescriptionDetails: document.getElementById('prescription-details'),
+            labName: document.getElementById('lab-name'),
+            labDetails: document.getElementById('lab-details'),
+            shade: document.getElementById('shade'),
+            workType: document.getElementById('work-type'),
+            traysGiven: document.getElementById('trays-given'),
+            outDate: document.getElementById('out-date'),
+            inDate: document.getElementById('in-date')
+        };
+        
+        // Patient ID generation
+        function generatePatientId(name = '', age = '', sex = '') {
+            const cleanName = name.replace(/\s/g, '').toLowerCase();
+            const hash = cleanName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) + (age || '') + (sex ? sex.charCodeAt(0) : '');
+            const timestamp = new Date().getTime();
+            return `SCDC-${timestamp}-${hash}`;
+        }
+
+        // Autocomplete and data retrieval
+        const patientCache = {};
+        
+        async function fetchAllPatients() {
+            if (!isAuthReady) return;
+            const q = collection(db, 'artifacts', appId, 'public', 'data', 'patients');
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(doc => {
+                const patient = doc.data();
+                patientCache[patient.id] = patient;
+            });
+        }
+        
+        async function setupAutocompleteListeners() {
+            await fetchAllPatients();
+            
+            const patientNamesList = document.getElementById('patient-names');
+            const uniqueNames = [...new Set(Object.values(patientCache).map(p => p.patientName))];
+            patientNamesList.innerHTML = uniqueNames.map(name => `<option value="${name}">`).join('');
+
+            formElements.patientName.addEventListener('change', (e) => {
+                const selectedName = e.target.value;
+                const patient = Object.values(patientCache).find(p => p.patientName === selectedName);
+                if (patient) {
+                    fillFormWithPatientData(patient);
+                }
+            });
+
+            formElements.patientPhone.addEventListener('blur', (e) => {
+                const phoneNumber = e.target.value;
+                const patient = Object.values(patientCache).find(p => p.patientPhone === phoneNumber);
+                if (patient) {
+                    fillFormWithPatientData(patient);
+                }
+            });
+        }
+
+        function fillFormWithPatientData(patient) {
+            for (const key in formElements) {
+                const element = formElements[key];
+                if (patient[key] !== undefined) {
+                    element.value = patient[key];
+                }
+            }
+            calculateBalances();
+        }
+
+        // Automatic balance calculation
+        function calculateBalances() {
+            const totalCharges = parseFloat(formElements.totalCharges.value) || 0;
+            const treatmentPaid = parseFloat(formElements.treatmentPaid.value) || 0;
+            const medicineTotal = parseFloat(formElements.medicineTotal.value) || 0;
+            const medicinePaid = parseFloat(formElements.medicinePaid.value) || 0;
+
+            formElements.treatmentBalance.value = (totalCharges - treatmentPaid).toFixed(2);
+            formElements.medicineBalance.value = (medicineTotal - medicinePaid).toFixed(2);
+        }
+
+        formElements.totalCharges.addEventListener('input', calculateBalances);
+        formElements.treatmentPaid.addEventListener('input', calculateBalances);
+        formElements.medicineTotal.addEventListener('input', calculateBalances);
+        formElements.medicinePaid.addEventListener('input', calculateBalances);
+        
+        // Save data to Firestore
+        document.getElementById('save-button').addEventListener('click', async () => {
+            const requiredFields = ['date', 'timeIn', 'patientName', 'patientPhone', 'patientId', 'patientType', 'age', 'sex', 'appointmentType', 'treatmentDone'];
+            const missingFields = requiredFields.filter(field => !formElements[field].value);
+            
+            if (missingFields.length > 0) {
+                showModal('Validation Error', `Please fill out all the required fields (${missingFields.join(', ')}).`);
+                return;
+            }
+            
+            const data = {
+                id: formElements.patientId.value,
+                date: formElements.date.value,
+                timeIn: formElements.timeIn.value,
+                patientName: formElements.patientName.value,
+                patientPhone: formElements.patientPhone.value,
+                patientType: formElements.patientType.value,
+                age: formElements.age.value,
+                sex: formElements.sex.value,
+                appointmentType: formElements.appointmentType.value,
+                address: formElements.address.value,
+                treatmentPlan: formElements.treatmentPlan.value,
+                treatmentDone: formElements.treatmentDone.value,
+                nextAppointment: formElements.nextAppointment.value,
+                totalCharges: parseFloat(formElements.totalCharges.value) || 0,
+                treatmentPaid: parseFloat(formElements.treatmentPaid.value) || 0,
+                treatmentBalance: parseFloat(formElements.treatmentBalance.value) || 0,
+                medicineTotal: parseFloat(formElements.medicineTotal.value) || 0,
+                medicinePaid: parseFloat(formElements.medicinePaid.value) || 0,
+                medicineBalance: parseFloat(formElements.medicineBalance.value) || 0,
+                gpayTime: formElements.gpayTime.value,
+                totalEstimation: parseFloat(formElements.totalEstimation.value) || 0,
+                measurementDetails: formElements.measurementDetails.value,
+                additionalDetails: formElements.additionalDetails.value,
+                medicalHistory: formElements.medicalHistory.value,
+                allergyHistory: formElements.allergyHistory.value,
+                prescriptionDetails: formElements.prescriptionDetails.value,
+                labName: formElements.labName.value,
+                labDetails: formElements.labDetails.value,
+                shade: formElements.shade.value,
+                workType: formElements.workType.value,
+                traysGiven: formElements.traysGiven.value,
+                outDate: formElements.outDate.value,
+                inDate: formElements.inDate.value,
+                timestamp: new Date().toISOString(),
+            };
+
+            try {
+                // Save patient data
+                const patientDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'patients', data.id);
+                await setDoc(patientDocRef, data);
+                
+                // Save lab records to a separate collection
+                const labData = {
+                    patientId: data.id,
+                    patientName: data.patientName,
+                    patientPhone: data.patientPhone,
+                    labName: data.labName,
+                    labDetails: data.labDetails,
+                    shade: data.shade,
+                    workType: data.workType,
+                    traysGiven: data.traysGiven,
+                    outDate: data.outDate,
+                    inDate: data.inDate,
+                    timestamp: data.timestamp
+                };
+                const labDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'lab_records', data.id);
+                await setDoc(labDocRef, labData);
+
+                showModal('Success!', 'Patient data and lab records saved successfully.');
+                clearForm();
+            } catch (error) {
+                console.error("Error saving document:", error);
+                showModal('Error', 'Failed to save data. Please try again.');
+            }
+        });
+
+        // Clear the form
+        function clearForm() {
+            for (const key in formElements) {
+                const element = formElements[key];
+                if (element.id !== 'patient-id' && element.id !== 'patient-type' && element.id !== 'sex' && element.id !== 'appointment-type' && element.id !== 'trays-given') {
+                    element.value = '';
+                }
+            }
+            // Reset selects to default values
+            formElements.patientType.value = 'New';
+            formElements.sex.value = 'Male';
+            formElements.appointmentType.value = 'Walk-in Consultation';
+            formElements.traysGiven.value = 'Yes';
+            formElements.patientId.value = generatePatientId();
+        }
+
+        document.getElementById('clear-form-button').addEventListener('click', clearForm);
+
+        // Export to CSV functionality
+        document.getElementById('export-button').addEventListener('click', async () => {
+            const patientData = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'patients'));
+            const labData = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'lab_records'));
+            
+            const patients = patientData.docs.map(doc => doc.data());
+            const labs = labData.docs.map(doc => doc.data());
+            
+            if (patients.length === 0) {
+                showModal('No Data', 'There is no patient data to export.');
+                return;
+            }
+            
+            const header = [
+                'Date', 'Time In', 'Time Out', 'Patient Name', 'Patient Phone Number', 'Patient ID',
+                'Patient Type', 'Age', 'Sex', 'Appointment Type', 'Address', 'Treatment Plan', 'Treatment Done',
+                'Next Scheduled Appointment', 'Total Charges', 'Treatment Amount Paid', 'Treatment Amount Balance',
+                'Medicine Total', 'Medicine Paid', 'Medicine Balance', 'Gpay Time', 'Total Estimation', 'Measurement Details',
+                'Additional Details', 'Medical History', 'Allergy History', 'Prescription Details', 'Lab Name',
+                'Lab Details', 'Shade', 'Work Type', 'Trays Given', 'Out Date', 'In Date'
+            ];
+            
+            const dataRows = patients.map(patient => {
+                const labRecord = labs.find(lab => lab.patientId === patient.id) || {};
+                return [
+                    patient.date,
+                    patient.timeIn,
+                    patient.timeOut,
+                    patient.patientName,
+                    patient.patientPhone,
+                    patient.id,
+                    patient.patientType,
+                    patient.age,
+                    patient.sex,
+                    patient.appointmentType,
+                    patient.address.replace(/\n/g, ' '),
+                    patient.treatmentPlan,
+                    patient.treatmentDone,
+                    patient.nextAppointment,
+                    patient.totalCharges,
+                    patient.treatmentPaid,
+                    patient.treatmentBalance,
+                    patient.medicineTotal,
+                    patient.medicinePaid,
+                    patient.medicineBalance,
+                    patient.gpayTime,
+                    patient.totalEstimation,
+                    patient.measurementDetails,
+                    patient.additionalDetails.replace(/\n/g, ' '),
+                    patient.medicalHistory.replace(/\n/g, ' '),
+                    patient.allergyHistory.replace(/\n/g, ' '),
+                    patient.prescriptionDetails.replace(/\n/g, ' '),
+                    labRecord.labName,
+                    labRecord.labDetails,
+                    labRecord.shade,
+                    labRecord.workType,
+                    labRecord.traysGiven,
+                    labRecord.outDate,
+                    labRecord.inDate
+                ];
+            });
+
+            let csvContent = header.join(',') + '\n';
+            dataRows.forEach(row => {
+                csvContent += row.map(value => {
+                    const stringValue = String(value).replace(/"/g, '""');
+                    return `"${stringValue}"`;
+                }).join(',') + '\n';
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'dental_patient_data.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showModal('Export Complete', 'Patient data has been exported to dental_patient_data.csv');
+        });
+
+        // Function to delete a patient record
+        async function deletePatient(docId) {
+            try {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'patients', docId));
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'lab_records', docId));
+                showModal('Deleted', 'Patient record and associated lab records deleted successfully.');
+            } catch (error) {
+                console.error("Error removing document: ", error);
+                showModal('Error', 'Failed to delete record.');
+            }
+        }
+
+        // Listen for real-time updates from Firestore
+        function setupFirestoreListener() {
+            if (!isAuthReady || !db) return;
+
+            const q = collection(db, 'artifacts', appId, 'public', 'data', 'patients');
+            const patientTableBody = document.getElementById('patient-table-body');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            loadingSpinner.classList.remove('hidden');
+
+            onSnapshot(q, (querySnapshot) => {
+                loadingSpinner.classList.add('hidden');
+                patientTableBody.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    const patient = doc.data();
+                    patientCache[doc.id] = patient;
+                    const row = document.createElement('tr');
+                    row.dataset.docId = doc.id;
+                    row.className = 'hover:bg-gray-100 transition-colors';
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${patient.date}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${patient.id}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${patient.patientName}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${patient.patientPhone}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${patient.treatmentDone}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${patient.totalCharges}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-red-500">$${patient.treatmentBalance}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button class="text-red-600 hover:text-red-900 transition-colors delete-button" data-doc-id="${doc.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm6 0a1 1 0 112 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd" />
+                                </svg>
+                                Delete
+                            </button>
+                        </td>
+                    `;
+                    patientTableBody.appendChild(row);
+                });
+
+                document.querySelectorAll('.delete-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const docId = e.currentTarget.dataset.docId;
+                        deletePatient(docId);
+                    });
+                });
+            }, (error) => {
+                console.error("Error listening to Firestore updates:", error);
+                loadingSpinner.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
